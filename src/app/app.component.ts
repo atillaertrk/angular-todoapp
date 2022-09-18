@@ -8,12 +8,17 @@ import { Model, TodoItem } from './model';
 })
 export class AppComponent {
   model = new Model();
+  isDisplay = false;
 
   getName() {
     return this.model.user + "'s";
   }
   getItems() {
-    return this.model.items.filter((items) => !items.action);
+    if (this.isDisplay) {
+      return this.model.items;
+    } else {
+      return this.model.items.filter((items) => !items.action);
+    }
   }
   addItem(value: any) {
     if (value != '') {
